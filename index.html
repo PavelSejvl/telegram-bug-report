@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ladíme to - Sweetcafe admin</title>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<style>
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #f5f5f5;
+}
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+button {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  background: #2AABEE;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+</style>
+
+</head>
+<body>
+
+<h2>🐞 Ladíme to - Sweetcafe admin</h2>
+
+<label>Název</label>
+<input id="title" placeholder="Např. Login nefunguje">
+
+<label>Popis</label>
+<textarea id="description" placeholder="Co se děje"></textarea>
+
+<label>Očekávané chování</label>
+<textarea id="expected" placeholder="Co by se mělo dít"></textarea>
+
+<label>Priorita</label>
+<select id="priority">
+  <option>Nízká</option>
+  <option>Střední</option>
+  <option>Vysoká</option>
+</select>
+
+<button onclick="sendData()">Odeslat</button>
+
+<script>
+const tg = window.Telegram.WebApp
+tg.expand()
+
+function sendData() {
+  let data = {
+    title: document.getElementById("title").value,
+    description: document.getElementById("description").value,
+    expected: document.getElementById("expected").value,
+    priority: document.getElementById("priority").value
+  }
+  tg.sendData(JSON.stringify(data))
+}
+</script>
+
+</body>
+</html>
